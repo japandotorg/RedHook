@@ -1,7 +1,7 @@
 """ Entry point to trigger webhook(s) """
 
 import argparse
-from RedWebhook import DiscordWebhook
+from RedWebhook import RedHook
 
 def main():
     
@@ -21,7 +21,7 @@ def main():
     
     args = parser.parse_args()
     
-    webhook = DiscordWebhook(
+    webhook = RedHook(
         url=args.url,
         content=args.content,
         username=args.username,
