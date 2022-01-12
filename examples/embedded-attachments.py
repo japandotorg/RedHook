@@ -1,6 +1,6 @@
-from RedWebhook import RedHook, DiscordEmbed
+from RedWebhook import RedWebhook, DiscordEmbed
 
-webhook = RedHook(
+webhook = RedWebhook(
     url='<your_webhook_url_here>'
 )
 

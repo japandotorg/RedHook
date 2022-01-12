@@ -1,14 +1,14 @@
-# RedHook
+# RedWebhook
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/japandotorg/RedHook/blob/main/LICENSE)
+[![GitHub license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/japandotorg/RedWebhook/blob/main/LICENSE)
 
 # Install
 
 Install using pip:
 
-` - ` `pip install RedHook`
-` - ` `pip install -U RedHook`
-` - ` `python -m pip install -U RedHook`
+` - ` `pip install RedWebhook`
+` - ` `pip install -U RedWebhook`
+` - ` `python -m pip install -U RedWebhook`
 
 ## Examples
 
@@ -26,17 +26,17 @@ Install using pip:
 
 ### basic webhook
 ```py
-from RedWebhook import RedHook
+from RedWebhook import RedWebhook
 
-webhook = RedHook(url="", content="Webhook Message")
+webhook = RedWebhook(url="", content="Webhook Message")
 response = webhook.execute()
 ```
 
 ### manage discord rate limit
 ```py
-from RedWebhook import RedHook
+from RedWebhook import RedWebhook
 
-webhook = RedHook(
+webhook = RedWebhook(
     url='<your_webhook_url_here>',
     rate_limit_retry=True,
     content='Example'
@@ -47,11 +47,11 @@ response = webhook.execute()
 
 ### multiple webhook urls
 ```py
-from RedWebhook import RedHook
+from RedWebhook import RedWebhook
 
 webhooks = ['<webhook_url_1>', '<webhook_url_2>']
 
-webhook = RedHook(
+webhook = RedWebhook(
     url=webhooks,
     content='Webhook'
 )
@@ -61,9 +61,9 @@ response = webhook.execute()
 
 ### embedded webhook
 ```py
-from RedWebhook import RedHook, DiscordEmbed
+from RedWebhook import RedWebhook, DiscordEmbed
 
-webhook = RedHook(url='<your_webhook_url_here>')
+webhook = RedWebhook(url='<your_webhook_url_here>')
 
 # create embed objects for webhook
 embed = DiscordEmbed(
@@ -115,9 +115,9 @@ response = webhook.execute()
 
 By default, the embed fields are placed side by side. We can arrange them in a new line by setting `inline=False` as follows:
 ```py
-from RedWebhook import RedHook, DiscordEmbed
+from RedWebhook import RedWebhook, DiscordEmbed
 
-webhook = RedHook(url='<your_webhook_url_here>')
+webhook = RedWebhook(url='<your_webhook_url_here>')
 
 embed = DiscordEmbed(
     title='<your_title>',
@@ -151,10 +151,10 @@ embed.add_embed_field(
 
 ### edit webhook message
 ```py
-from RedWebhook import RedHook
+from RedWebhook import RedWebhook
 from time import sleep
 
-webhook = RedHook(
+webhook = RedWebhook(
     url='<your_webhook_url_here>',
     content='Before edit'
 )
@@ -170,10 +170,10 @@ sent_webhook = webhook.edit(sent_webhook)
 
 ### delete webhook messages
 ```py
-from RedWebhook import RedHook
+from RedWebhook import RedWebhook
 from time import sleep
 
-webhook = RedHook(
+webhook = RedWebhook(
     url='<your_webhook_url_here>',
     content='Before edit'
 )
@@ -187,11 +187,11 @@ webhook.delete(sent_webhook)
 
 ### send files
 ```py
-from RedWebhook import RedHook
+from RedWebhook import RedWebhook
 
-webhook = RedHook(
+webhook = RedWebhook(
     url='<your_webhook_url_here>',
-    username='RedHook with files'
+    username='RedWebhook with files'
 )
 
 with open('path/to/first/image.jpg', 'rb') as f:
@@ -204,9 +204,9 @@ response = webhook.execute()
 
 You can also upload embedded attachments:
 ```py
-from RedWebhook import RedHook, DiscordEmbed
+from RedWebhook import RedWebhook, DiscordEmbed
 
-webhook = RedHook(
+webhook = RedWebhook(
     url='<your_webhook_url_here>'
 )
 
@@ -228,9 +228,9 @@ response = webhook.execute()
 
 ### remove embeds and files
 ```py
-from RedWebhook import RedHook, DiscordEmbed
+from RedWebhook import RedWebhook, DiscordEmbed
 
-webhook = RedHook(
+webhook = RedWebhook(
     url='<your_webhook_url_here>'
 )
 
@@ -254,9 +254,9 @@ response = webhook.execute(remove_embeds=True, remove_files=True)
 
 `.remove_file()` removes the given file:
 ```py
-from RedWebhook import RedHook
+from RedWebhook import RedWebhook
 
-webhook = RedHook(
+webhook = RedWebhook(
     url='<your_webhook_url_here>',
     username='Webhook files'
 )
@@ -280,7 +280,7 @@ Look into the [Discord Documentation](https://discord.com/developers/docs/resour
 
 This example will only ping `user_id_1` and `user_id_2`, no one else
 ```py
-from RedWebhook import RedHook
+from RedWebhook import RedWebhook
 
 content = '@everyone say hello to our friends <@user_id_1> and <@user_id_2>'
 
@@ -288,7 +288,7 @@ allowed_mentions = {
     'users': ['user_id_1', 'user_id_2]
 }
 
-webhook = RedHook(
+webhook = RedWebhook(
     url='<your_webhook_url_here>',
     content=content,
     allowed_mentions=allowed_mentions
@@ -299,14 +299,14 @@ response = webhook.execute()
 
 ### use proxies
 ```py
-from RedWebhook import RedHook
+from RedWebhook import RedWebhook
 
 proxies = {
     'http': 'http://11.11.1.11:6969',
     'https': 'https://11.11.1.11:0420'
 }
 
-webhook = RedHook(
+webhook = RedWebhook(
     url='<your_webhook_url_here>',
     content='Webhook',
     proxies=proxies
@@ -316,14 +316,14 @@ response = webhook.execute()
 ```
 or
 ```py
-from RedWebhook import RedHook
+from RedWebhook import RedWebhook
 
 proxies = {
     'http': 'http://11.11.1.11:6969',
     'https': 'https://11.11.1.11:0420'
 }
 
-webhook = RedHook(
+webhook = RedWebhook(
     url='<your_webhook_url_here>',
     content='Webhook'
 )
@@ -335,7 +335,7 @@ response = webhook.execute()
 
 ### use cli
 ```bash
-usage: RedHook [-h] -u URL [URL ...] -c CONTENT [--username USERNAME] [--avatar_url AVATAR_URL]
+usage: RedWebhook [-h] -u URL [URL ...] -c CONTENT [--username USERNAME] [--avatar_url AVATAR_URL]
 
 Trigger Red Webhooks
 
@@ -350,10 +350,10 @@ optional arguments:
 ### timeout
 ```py
 from requests.exceptions import Timeout
-from RedWebhook import RedHook, DiscordEmbed
+from RedWebhook import RedWebhook, DiscordEmbed
 
 # we will set ridiculously low timeout threshold for testing purposes
-webhook = RedHook(
+webhook = RedWebhook(
     url='<your_webhook_url_here>',
     timeout=0.2,
 )

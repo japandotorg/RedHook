@@ -1,4 +1,4 @@
-from RedWebhook import RedHook
+from RedWebhook import RedWebhook
 
-webhook = RedHook(url="", content="Webhook Message")
+webhook = RedWebhook(url="", content="Webhook Message")
 response = webhook.execute()

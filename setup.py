@@ -7,7 +7,7 @@ with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
-    name='RedHook',
+    name='RedWebhook',
     version='0.1.0',
     packages=find_packages(),
     include_package_data=True,
@@ -15,7 +15,7 @@ setup(
     description='Send discord webhooks using python',
     long_description=README,
     long_description_content_type='text/markdown',
-    url='https://github.com/japandotorg/RedHook',
+    url='https://github.com/japandotorg/RedWebhook',
     install_requires=[
         'requests>=2.19.1',
     ],

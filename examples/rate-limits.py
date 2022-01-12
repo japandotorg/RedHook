@@ -1,6 +1,6 @@
-from RedWebhook import RedHook
+from RedWebhook import RedWebhook
 
-webhook = RedHook(
+webhook = RedWebhook(
     url='<your_webhook_url_here>',
     rate_limit_retry=True,
     content='Example'

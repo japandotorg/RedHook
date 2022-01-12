@@ -1,8 +1,8 @@
 from requests.exceptions import Timeout
-from RedWebhook import RedHook, DiscordEmbed
+from RedWebhook import RedWebhook, DiscordEmbed
 
 # we will set ridiculously low timeout threshold for testing purposes
-webhook = RedHook(
+webhook = RedWebhook(
     url='<your_webhook_url_here>',
     timeout=0.2,
 )

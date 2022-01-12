@@ -1,6 +1,6 @@
-from RedWebhook import RedHook, DiscordEmbed
+from RedWebhook import RedWebhook, DiscordEmbed
 
-webhook = RedHook(url='<your_webhook_url_here>')
+webhook = RedWebhook(url='<your_webhook_url_here>')
 
 # create embed objects for webhook
 embed = DiscordEmbed(

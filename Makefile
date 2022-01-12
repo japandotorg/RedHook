@@ -1,4 +1,4 @@
-PACKAGE_NAME=RedHook
+PACKAGE_NAME=RedWebhook
 
 .PHONY: tests
 

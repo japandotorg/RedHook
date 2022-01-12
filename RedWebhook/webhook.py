@@ -8,9 +8,9 @@ import datetime
 
 from exceptions import *
 
-logger = logging.getLogger('RedHook')
+logger = logging.getLogger('RedWebhook')
 
-class RedHook:
+class RedWebhook:
     """
     Webhook for Discord and Red-Bot
     """

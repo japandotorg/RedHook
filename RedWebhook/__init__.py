@@ -1,3 +1,3 @@
-__all__ = ["RedHook", "DiscordEmbed"]
+__all__ = ["RedWebhook", "DiscordEmbed"]
 
-from .webhook import RedHook, DiscordEmbed
+from .webhook import RedWebhook, DiscordEmbed

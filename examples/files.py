@@ -1,8 +1,8 @@
-from RedWebhook import RedHook
+from RedWebhook import RedWebhook
 
-webhook = RedHook(
+webhook = RedWebhook(
     url='<your_webhook_url_here>',
-    username='RedHook with files'
+    username='RedWebhook with files'
 )
 
 with open('path/to/first/image.jpg', 'rb') as f:

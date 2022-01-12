@@ -1,12 +1,12 @@
 """ Entry point to trigger webhook(s) """
 
 import argparse
-from RedWebhook import RedHook
+from RedWebhook import RedWebhook
 
 def main():
     
     parser = argparse.ArgumentParser(
-        prog="RedHook", description="Trigger discord Webhooks."
+        prog="RedWebhook", description="Trigger discord Webhooks."
     )
     parser.add_argument(
         "-u", "--url", required=True, nargs="+", help="Webhook urls"
@@ -21,7 +21,7 @@ def main():
     
     args = parser.parse_args()
     
-    webhook = RedHook(
+    webhook = RedWebhook(
         url=args.url,
         content=args.content,
         username=args.username,
