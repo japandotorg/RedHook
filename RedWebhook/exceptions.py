@@ -9,9 +9,6 @@ class ColourNotInRangeException(Exception):
         self.color = color
         
     def __str__(self):
-        return repr('"{}" is not in valid range of colors. The valid ranges '
-                    'of colors are 0 to 16777216 inclusive (INTEGERS) and 0 '
-                    'to FFFFFF inclusive (HEXADECIMAL)'
-                    .format(
-                        self.color
-                    ))
+        return repr(
+            f'"{self.color}" is not in valid range of colors. The valid ranges of colors are 0 to 16777216 inclusive (INTEGERS) and 0 to FFFFFF inclusive (HEXADECIMAL)'
+        )

@@ -52,9 +52,7 @@ class RedWebhook:
         :param filename: filename
         :return:
         """
-        self.files["_{}".format(
-            filename
-        )] = (filename, file)
+        self.files[f"_{filename}"] = (filename, file)
         
     def add_embed(self, index):
         """
@@ -75,9 +73,7 @@ class RedWebhook:
         removes file from `self.files` using specified `filename` if it exists
         :param filename: filename
         """
-        filename = "_{}".format(
-            filename
-        )
+        filename = f"_{filename}"
         if filename in self.files:
             del self.files[filename]
             
@@ -124,7 +120,7 @@ class RedWebhook:
             }
         }
         embeds_empty = not any(data["embeds"]) if "embeds" in data else True
-        if embeds_empty and "content" not in data and bool(self.files) is False:
+        if embeds_empty and "content" not in data and not bool(self.files):
             logger.error("webhook message is empty! set content or embed data")
         return data
     
@@ -141,19 +137,20 @@ class RedWebhook:
         self.files = {}
         
     def api_post_request(self, url):
-        if bool(self.files) is False:
-            response = requests.post(url, json=self.json, proxies=self.proxies,
-                                     params={'wait': True},
-                                     timeout=self.timeout)
-            
-        else:
-            self.files["payload_json"] = (None, json.dumps(self.json))
-            response = requests.post(url, 
-                                     files=self.files,
-                                     proxies=self.proxies,
-                                     timeout=self.timeout)
-        
-        return response
+        if not bool(self.files):
+            return requests.post(
+                url,
+                json=self.json,
+                proxies=self.proxies,
+                params={'wait': True},
+                timeout=self.timeout,
+            )
+
+
+        self.files["payload_json"] = (None, json.dumps(self.json))
+        return requests.post(
+            url, files=self.files, proxies=self.proxies, timeout=self.timeout
+        )
     
     def execute(self, remove_embeds=False, remove_files=False):
         """
@@ -224,11 +221,24 @@ class RedWebhook:
         for i, webhook in enumerate(sent_webhook):
             url = webhook.url.split('?')[0]
             previous_sent_message_id = json.loads(webhook.content.decode('utf-8'))['id']
-            if bool(self.files) is False:
-                response = requests.patch(url+'/messages/'+str(previous_sent_message_id), json=self.json, proxies=self.proxies, params={'wait': True}, timeout=self.timeout)
+            if not bool(self.files):
+                response = requests.patch(
+                    f'{url}/messages/{str(previous_sent_message_id)}',
+                    json=self.json,
+                    proxies=self.proxies,
+                    params={'wait': True},
+                    timeout=self.timeout,
+                )
+
             else:
                 self.files["payload_json"] = (None, json.dumps(self.json))
-                response = requests.patch(url+'/messages/'+str(previous_sent_message_id), files=self.files, proxies=self.proxies, timeout=self.timeout)
+                response = requests.patch(
+                    f'{url}/messages/{str(previous_sent_message_id)}',
+                    files=self.files,
+                    proxies=self.proxies,
+                    timeout=self.timeout,
+                )
+
             if response.status_code in [200, 204]:
                 logger.debug(
                     "[{index}/{length}] Webhook edited".format(
@@ -260,7 +270,12 @@ class RedWebhook:
         for i, webhook in enumerate(sent_webhook):
             url = webhook.url.split('?')[0]
             previous_sent_message_id = json.loads(webhook.content.decode('utf-8'))['id']
-            response = requests.delete(url+'/messages/'+str(previous_sent_message_id), proxies=self.proxies, timeout=self.timeout)
+            response = requests.delete(
+                f'{url}/messages/{str(previous_sent_message_id)}',
+                proxies=self.proxies,
+                timeout=self.timeout,
+            )
+
             if response.status_code in [200, 204]:
                 logger.debug(
                     "[{index}/{length}] Webhook deleted".format(
